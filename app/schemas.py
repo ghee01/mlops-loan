@@ -68,7 +68,7 @@ class LoanRequest(BaseModel):
         description='연간카드사용액',
         examples=[2400.0]
     )
-    dept_ratio: float = Field(
+    debt_ratio: float = Field(
         ...,
         ge=0,   # 백분율 값 → 0~100
         le=100,
