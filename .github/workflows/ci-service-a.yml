@@ -83,8 +83,7 @@ jobs:
       # -- 이미지 빌드 : github.sha = 이 커밋의 고유 해시. 추적 가능
       - name: Build Docker image
         run: |
-          cd mlops-loan
-          docker build -t loan-api:ci-${{ github.sha }} 
+          docker build -t loan-api:ci-${{ github.sha }} .
 
       # -- 컨테이너 실행 + 헬스체크
 			# 모델 파일을 읽는 동안 서버가 아직 준비되지 않았을 수 있어서(러너가 느린 날 실패)
