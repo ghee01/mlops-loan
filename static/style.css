@@ -1,0 +1,80 @@
+/* 디자인 관련 - 색상/간격/타이포그래픽 등
+:root에 모아두면 나중에 색만 바꿔서 전체 화면 톤을 쉽게 바꿀 수 있다. 
+--이름 형태는 CSS 변수 */
+
+:root {
+    --bg: #f4f5fb;
+    --panel: #fff;
+    --ink: #12172b;
+    --muted: #6b7280;
+    --border: #e6e8f0;
+    --accent: #4f46e5;
+    --accent-dark: #4338ca;
+    --accent-soft: #eef2ff;
+    --grade-a: #16a34a;
+    --grade-b: #2563eb;
+    --grade-c: #d97706;
+    --grade-d: #dc2626;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --shadow-card: 0 1px 2px rgba(18, 23, 43, 0.04), 0 12px 32px rgba(18, 23, 43, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* 레이아웃 - 2단 배치 1.5:1 비율 → 반응형(860px보다 작으면) 1단 */
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.layout {
+    max-width: 1080px;
+    margin: 32px auto;
+    padding: 0 24px 48px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel {
+    background: var(--panel);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 28px;
+}
+
+/* 필드 그룹/입력창 스타일 */
+.field-group {
+    border: none;
+    margin: 0 0 22px;
+}
+.field-group legend {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.grid {
+    display: grid;
+    gap: 14px;
+}
+.grid--2 { grid-template-columns: 1fr 1fr; }
+.grid--3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.field {
+    
+}
