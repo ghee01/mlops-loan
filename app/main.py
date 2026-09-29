@@ -13,11 +13,14 @@ app/main.py
         API 응답 형식을 바꿀 때도 main.py나 schemas.py만 보면 된다.
 '''
 import logging
+from pathlib import Path
 import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.model import LoanModel
 from app.schemas import (
@@ -72,6 +75,14 @@ app = FastAPI(
     version='1.0.5',
     lifespan=lifespan
 )
+
+STATIC_DIR = Path(__file__).parent / 'static'
+app.mount('/static', StaticFiles(directory=STATIC_DIR), name='static')
+
+@app.get('/ui')
+async def serve_ui():
+    """사람이 보는 대출 승인 예측 데모 화면 (정적 HTML)"""
+    return FileResponse(STATIC_DIR / 'index.html')
 
 @app.get('/')
 async def root():
